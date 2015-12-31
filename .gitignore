@@ -1,0 +1,5 @@
+node_modules/
+.idea/
+.project/
+frontend/dist/
+dump.rdb
