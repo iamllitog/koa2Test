@@ -28,7 +28,7 @@ app.use(session(Object.assign({
     store : redisStore()
 },config.sessionOption)));
 //设置图标
-app.use(favicon(path.join(__dirname, 'frontend/dist/asset', 'favicon.png')));
+app.use(favicon(path.join(__dirname, 'frontend/dist/static/internalM/publicAsset', 'favicon.png')));
 //设置视图
 app.use(views(path.join(__dirname, 'frontend/dist/views'),{
     default :'ejs'
