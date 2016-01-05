@@ -22,12 +22,16 @@
     "koa-views": "^3.1.0"
   },
   "devDependencies": {
+    "extract-text-webpack-plugin": "^1.0.0",
     "gulp": "^3.9.0",
     "gulp-file-include": "^0.13.7",
     "gulp-jshint": "^2.0.0",
     "gulp-webpack": "^1.5.0",
     "jshint": "^2.8.0",
     "jshint-stylish": "^2.1.0",
-    "map-stream": "0.0.6"
+    "map-stream": "0.0.6",
+    "node-sass": "^3.4.2",
+    "sass-loader": "^3.1.2",
+    "wrench": "^1.5.8"
   }
 }
