@@ -34,7 +34,7 @@ app.use(views(path.join(__dirname, 'frontend/dist/views'),{
     default :'ejs'
 }));
 //设置静态资源
-app.use(serve(path.join(__dirname, 'frontend/asset')));
+app.use(serve(path.join(__dirname, 'frontend/dist/static')));
 //日志
 app.use(logger());
 //请求解析器
