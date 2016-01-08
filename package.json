@@ -22,7 +22,12 @@
     "koa-views": "^3.1.0"
   },
   "devDependencies": {
+    "fis-hook-commonjs": "*",
+    "fis-lint-jshint": "0.0.10",
+    "fis-optimizer-png-compressor": "^0.1.3",
+    "fis-parser-babel-5.x": "^1.3.0",
     "fis-parser-node-sass": "^0.1.8",
+    "fis-postpackager-loader": "*",
     "gulp": "^3.9.0",
     "gulp-jshint": "^2.0.0",
     "gulp-shell": "^0.5.1",
