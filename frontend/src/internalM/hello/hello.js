@@ -1,8 +1,8 @@
 /**
  * Created by litong on 16-1-4.
  */
-import '/externalM/browser-polyfill';
-import '/externalM/external-helpers';
+import '/externalM/boot/browser-polyfill';
+import '/externalM/boot/external-helpers';
 import $ from '/externalM/jquery';
 import avalon from'/externalM/avalon/avalon.shim';
 

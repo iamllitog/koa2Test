@@ -5,3 +5,10 @@ body{
 .rounded{
   @include border-radius(5px);
 }
+
+li.list-1{
+  background-image: url('../publicAsset/a.png?__sprite');
+}
+li.list-2{
+  background-image: url('../publicAsset/b.png?__sprite');
+}
