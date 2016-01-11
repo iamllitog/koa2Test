@@ -3,15 +3,20 @@
  */
 import '/externalM/boot/browser-polyfill';
 import '/externalM/boot/external-helpers';
-import $ from '/externalM/jquery';
+var $ = require('/externalM/jquery');
+import '/externalM/jqRaty/jquery.raty';
+import '/externalM/amazeui/js/amazeui';
 import avalon from'/externalM/avalon/avalon.shim';
 
-function timeout(ms){
+import '/internalM/hello/hello.scss';
+import '/externalM/amazeui/css/amazeui.min.css';
+
+function test(){
     return new Promise((resolve) => {
-        setTimeout(resolve,ms);
+        setTimeout(resolve,1000);
     }).then(() => {
         $('body').css('background','red');
     });
 }
 
-timeout(2000);
+test();

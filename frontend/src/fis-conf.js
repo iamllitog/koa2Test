@@ -18,7 +18,7 @@ fis.match('::package',{
 fis.match('{externalM/amazeui/css/amazeui.min.css}',{
     packTo : '/static/pkg/pkg.css'
 });
-fis.media('publish').match('{externalM/amazeui/css/amazeui.min.css}',{
+fis.media('publish').match('{externalM/amazeui/css/amazeui.min.css,}',{
     packTo : '/static/pkg/pkg.css',
     optimizer : fis.plugin('clean-css'),
     useHash : true
@@ -93,6 +93,11 @@ fis.match('internalM/**.js',{
         browser : true,				//浏览器环境
         nonstandard:true,
         scripturl:true,				//允许JavaScript:void 0
+        globals : {
+            //全局变量忽略--amd
+            "define" : false,
+            "require" : false
+        }
     })
 });
 fis.media('publish').match('internalM/**.js',{
