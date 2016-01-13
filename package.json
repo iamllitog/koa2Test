@@ -27,7 +27,6 @@
     "fis-optimizer-png-compressor": "^0.1.3",
     "fis-parser-babel-5.x": "^1.3.0",
     "fis-parser-node-sass": "^0.1.8",
-    "fis3-hook-commonjs": "^0.1.8",
     "fis3-postpackager-loader": "^1.3.12",
     "gulp": "^3.9.0",
     "gulp-jshint": "^2.0.0",

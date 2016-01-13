@@ -5,7 +5,6 @@ fis.set('project.ignore',['components/**','fis-conf.js']);
 fis.hook('commonjs',{});
 fis.match('::package',{
     postpackager : fis.plugin('loader',{
-        resourceType : 'commonJs',
         useInlineMap : true
     }),
     spriter : fis.plugin('csssprites',{
@@ -16,12 +15,39 @@ fis.match('::package',{
 
 //------------------css打包------------------
 fis.match('{externalM/amazeui/css/amazeui.min.css}',{
-    packTo : '/static/pkg/pkg.css'
+    packTo : '/pkg/pkg.css'
 });
-fis.media('publish').match('{externalM/amazeui/css/amazeui.min.css,}',{
-    packTo : '/static/pkg/pkg.css',
+fis.match('/pkg/pkg.css',{
+    release : '/static/pkg/pkg.css',
+    url : '$0'
+});
+fis.media('publish').match('/pkg/pkg.css',{
+    release : '/static/pkg/pkg.css',
+    url : '$0',
     optimizer : fis.plugin('clean-css'),
     useHash : true
+});
+
+//------------------js打包------------------
+fis.match('externalM/{jquery,amazeui/js/amazeui,avalon/avalon.shim,boot/browser-polyfill,boot/external-helpers}.js',{
+    packTo : '/pkg/pkg.js'
+});
+fis.match("externalM/jquery.js",{
+    packOrder : -100
+});
+fis.match('/pkg/pkg.js',{
+    release : '/static/pkg/pkg.js',
+    url : '$0'
+});
+fis.media('publish').match('/pkg/pkg.js',{
+    release : '/static/pkg/pkg.js',
+    url : '$0',
+    useHash : true,
+    optimizer :fis.plugin('uglify-js',{
+        compress:{
+            drop_console : true
+        }
+    })
 });
 
 //------------------内部css------------------
@@ -73,7 +99,6 @@ fis.match('*.png',{
 fis.match('internalM/**.js',{
     release : '/static/$0',
     url : '$0',
-    isMod : true,
     parser: fis.plugin('babel-5.x',{
         stage : 3,
         externalHelpers : true
@@ -95,6 +120,8 @@ fis.match('internalM/**.js',{
         scripturl:true,				//允许JavaScript:void 0
         globals : {
             //全局变量忽略--amd
+            "$" : false,
+            "avalon" : false,
             "define" : false,
             "require" : false
         }
@@ -103,7 +130,6 @@ fis.match('internalM/**.js',{
 fis.media('publish').match('internalM/**.js',{
     release : '/static/$0',
     url : '$0',
-    isMod : true,
     parser: fis.plugin('babel-5.x',{
         stage : 3,
         externalHelpers : true
@@ -123,31 +149,32 @@ fis.media('publish').match('internalM/**.js',{
         browser : true,				//浏览器环境
         nonstandard:true,
         scripturl:true,				//允许JavaScript:void 0
+        globals : {
+            //全局变量忽略
+            "$" : false,
+            "avalon" : false,
+            "UE" : false,
+            "echarts" : false
+        }
     }),
     useHash : true,
     optimizer : fis.plugin('uglify-js',{
-        mangle : {
-            except : 'exports,module,require,define'
-        },compress:{
+        compress:{
             drop_console : true
         }
     })
 });
 
 //------------------js外部引用------------------
-fis.match("{externalM/**.js,!externalM/boot/mod.js}",{
+fis.match("externalM/**.js",{
     release : '/static/$0',
-    url : '$0',
-    isMod : true
+    url : '$0'
 });
-fis.media('publish').match("{externalM/**.js,!externalM/boot/mod.js}",{
+fis.media('publish').match("externalM/**.js",{
     release : '/static/$0',
     url : '$0',
-    isMod : true,
     optimizer : fis.plugin('uglify-js',{
-        mangle : {
-            except : 'exports,module,require,define'
-        },compress:{
+        compress:{
             drop_console : true
         }
     }),
@@ -164,23 +191,4 @@ fis.match("{externalM/**.css,!externalM/**.js}",{
     url : '$0',
     optimizer : fis.plugin('clean-css'),
     useHash : true
-});
-
-//------------------modjs引用------------------
-fis.match('externalM/boot/mod.js',{
-    release : '/static/$0',
-    url : '$0',
-    isMod : false
-});
-fis.media('publish').match('externalM/boot/mod.js',{
-    release : '/static/$0',
-    url : '$0',
-    isMod : false,
-    optimizer : fis.plugin('uglify-js',{
-        mangle : {
-            except : 'exports,module,require,define'
-        },compress:{
-            drop_console : true
-        }
-    })
 });
