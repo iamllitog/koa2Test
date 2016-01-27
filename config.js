@@ -10,6 +10,11 @@ const develop = {
     port : 8090,
     //cookie密钥
     cookieKeys : ['why i am ','a array?'],
+    //静态资源缓存时间
+    staticRSOption :
+    {
+        maxage : 24*60*60*1000
+    },
     //redis 配置
     redisOption : {
         host : '127.0.0.1',

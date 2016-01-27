@@ -13,6 +13,7 @@ const views = require('koa-views');
 const serve = require('koa-static');
 const session = require('koa-generic-session');
 const redisStore = require('koa-redis');
+const errorHandler = require('koa-errorhandler');
 
 const config = require('./config');
 const routes = require('./routes');
@@ -34,11 +35,18 @@ app.use(views(path.join(__dirname, 'frontend/dist/views'),{
     default :'ejs'
 }));
 //设置静态资源
-app.use(serve(path.join(__dirname, 'frontend/dist/static')));
+app.use(serve(path.join(__dirname, 'frontend/dist/static'),config.staticRSOption));
 //日志
 app.use(logger());
 //请求解析器
 app.use(koaBody());
+//非生成器函数的异常处理，生成器函数异常处理使用try-cache
+app.use(errorHandler({
+    template : 'frontend/dist/views/error.ejs',
+    html : function (err){
+        console.log("报错啦:"+err);
+    }
+}));
 //路由设置+异常处理
 routes(app);
 

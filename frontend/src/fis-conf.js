@@ -94,6 +94,11 @@ fis.match('*.png',{
     release : '/static/$0',
     url : '$0',
 });
+//------------------字体------------------
+fis.match('*.{eot,svg,ttf,woff}',{
+    release : '/static/$0',
+    url : '$0',
+});
 
 //------------------js内部引用------------------
 fis.match('internalM/**.js',{

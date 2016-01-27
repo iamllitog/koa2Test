@@ -11,9 +11,4 @@ module.exports = (app) => {
         yield this.render('notfound');
     });
 
-    //异常捕获
-    app.on('error',(err,ctx) => {
-        console.error('server error:',err,ctx);
-    });
-
 };
