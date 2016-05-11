@@ -2,7 +2,6 @@
  * Created by litong on 16-1-7.
  */
 fis.set('project.ignore',['components/**','fis-conf.js']);
-fis.hook('commonjs',{});
 fis.match('::package',{
     postpackager : fis.plugin('loader',{
         useInlineMap : true
@@ -29,11 +28,20 @@ fis.media('publish').match('/pkg/pkg.css',{
 });
 
 //------------------js打包------------------
-fis.match('externalM/{jquery,amazeui/js/amazeui,avalon/avalon.shim,boot/browser-polyfill,boot/external-helpers}.js',{
+fis.match('externalM/{jquery,amazeui/js/amazeui,avalon/avalon.shim,es6-promise}.js',{
     packTo : '/pkg/pkg.js'
 });
 fis.match("externalM/jquery.js",{
-    packOrder : -100
+    packOrder : 1
+});
+fis.match("externalM/avalon/avalon.shim.js",{
+    packOrder : 2
+});
+fis.match("externalM/es6-promise.js",{
+    packOrder : 3
+});
+fis.match("externalM/amazeui/js/amazeui.js",{
+    packOrder : 4
 });
 fis.match('/pkg/pkg.js',{
     release : '/static/pkg/pkg.js',
@@ -104,10 +112,6 @@ fis.match('*.{eot,svg,ttf,woff}',{
 fis.match('internalM/**.js',{
     release : '/static/$0',
     url : '$0',
-    parser: fis.plugin('babel-5.x',{
-        stage : 3,
-        externalHelpers : true
-    }),
     lint : fis.plugin('jshint',{
         i18n : 'zh-CN',
         esnext : true,
@@ -135,10 +139,6 @@ fis.match('internalM/**.js',{
 fis.media('publish').match('internalM/**.js',{
     release : '/static/$0',
     url : '$0',
-    parser: fis.plugin('babel-5.x',{
-        stage : 3,
-        externalHelpers : true
-    }),
     lint : fis.plugin('jshint',{
         i18n : 'zh-CN',
         esnext : true,
