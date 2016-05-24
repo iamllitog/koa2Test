@@ -19,12 +19,9 @@ function walk(path){
       walk(path + '/' + item);
     }else{
       var url = path + '/' + item;
-      console.log(url);
       if(url.endsWith('test.ejs')){
       	url = url.substring(startIndex,url.length - '.test.ejs'.length);
-      	console.log(url);
 				testRoute.get(url,function *(){
-					console.log('test/'+url.substring(1));
 				    yield this.render('test/'+url.substring(1) + '.test.ejs');
 				});
       }
