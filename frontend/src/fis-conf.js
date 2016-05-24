@@ -85,8 +85,12 @@ fis.media('publish').match('internalM/**.scss',{
 });
 
 //------------------ejs------------------
-fis.match('views/**.ejs',{
+fis.match('{views,test}/**.ejs',{
     isHtmlLike : true
+});
+fis.match('test/**.ejs',{
+    isHtmlLike : true,
+    release : '/views/$0'
 });
 
 //------------------ejs内部引用------------------
