@@ -11,12 +11,10 @@
  * @require /externalM/es6-promise.js
  */
 
-function test(){
+function backgroundChange(){
     return new Promise(function(resolve){
         setTimeout(resolve,1000);
     }).then(function(){
         $('body').css('background','red');
     });
 }
-
-test();
