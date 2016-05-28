@@ -1,0 +1,18 @@
+<link rel="import" href="/inlinePart/test/header.html?__inline"/>
+<script src="/internalM/hello/hello.js"></script>
+<script type="text/javascript">
+    mocha.setup('bdd');
+    chai.should();
+
+
+      describe('helloTest', function() {
+        it('#backgroundChange()', function(done) {
+          backgroundChange().then(function(){
+            $('body').css('background-color').should.equal('rgb(255, 0, 0)');
+            done();
+          });
+        });
+    });
+    mocha.run();
+</script>
+<link rel="import" href="/inlinePart/test/footer.html?__inline"/>

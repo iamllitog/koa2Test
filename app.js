@@ -11,7 +11,7 @@ const koaBody = require('koa-body');
 const gzip = require('koa-gzip');
 const views = require('koa-views');
 const serve = require('koa-static');
-const session = require('koa-generic-session');
+//const session = require('koa-generic-session');
 const redisStore = require('koa-redis');
 const errorHandler = require('koa-errorhandler');
 
@@ -25,9 +25,9 @@ app.keys = config.cookieKeys;
 //gizp压缩,要放在第一的位置
 app.use(gzip());
 //session配置
-app.use(session(Object.assign({
-    store : redisStore()
-},config.sessionOption)));
+//app.use(session(Object.assign({
+//    store : redisStore()
+//},config.sessionOption)));
 //设置图标
 app.use(favicon(path.join(__dirname, 'frontend/dist/static/internalM/publicAsset', 'favicon.png')));
 //设置视图

@@ -45,7 +45,7 @@ gulp.task('developPublish',shell.task([
 
 //删除前端生成文件
 gulp.task('delFrontDist',function(done){
-    del(['frontend/dist'],done);
+    del(['frontend/dist','!frontend/dist/views/**'],done);
 });
 
 //默认任务，开发任务
